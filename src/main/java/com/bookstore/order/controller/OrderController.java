@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +22,8 @@ import com.bookstore.order.service.CartService;
 import com.bookstore.order.service.OrderService;
 
 import lombok.extern.slf4j.Slf4j;
-
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 @RestController
 @RequestMapping("/orders")
 @Slf4j
@@ -31,7 +34,51 @@ public class OrderController {
 	@Autowired
 	private CartService cartService;
 	
-	  @PostMapping("/checkout_order/{id}") 
+	 /* @PostMapping("/checkout_order/{id}") 
+	  public  ResponseEntity<?>  checkoutOrder(@PathVariable("id") Long userId) throws Exception {
+	        log.info("Inside OrderController:: checkoutOrder");
+	        JSONObject jsonReturnObj = new JSONObject();
+	        JSONObject jsonObj;
+	        JSONParser parser = new JSONParser();
+	        OrderItem orderDetails;
+	        List<CartItem> cartItems = cartService.getCartByUserId(userId);
+	       if(cartItems.size()>0) 
+	       {
+	    	   String deliveryAddress="silver Apt, 3rd block 500";
+		        String payment_type="COD";
+		        String orderId = ""+getOrderId();
+		        Double checkoutPrice  = getCheckoutPrice(cartItems);
+		        Date dt= new Date();
+		        List<OrderItem> tmp = new ArrayList<OrderItem>();
+				for(CartItem addCart : cartItems) {
+					
+					OrderItem cart = new OrderItem();
+					cart.setPayment_type(payment_type);
+					cart.setPrice(checkoutPrice);
+					cart.setUserId(userId);
+					cart.setOrder_id(orderId);
+					cart.setProductId(addCart.getProductId());
+					cart.setQty(addCart.getQty());
+					cart.setDelivery_address(deliveryAddress);
+					cart.setOrderStatus("Order Placed");
+					cart.setOrder_date(dt.toString());
+					tmp.add(cart);
+				}
+				 orderDetails= orderService.saveProductsForCheckout(tmp);
+				  //jsonObj = orderDetails;
+	       }else {
+	    	   jsonReturnObj.put("status", 200);
+				jsonReturnObj.put("message","Cart is Empty. Please add Product to cart!");
+	    	   return new ResponseEntity(jsonReturnObj, HttpStatus.OK);
+	       }
+	       jsonReturnObj.put("status", 200);
+			jsonReturnObj.put("message","Order created");
+			jsonReturnObj.put("data",orderDetails);
+		 
+		return new ResponseEntity(jsonReturnObj, HttpStatus.OK);
+	  
+	  }*/
+	 @PostMapping("/checkout_order/{id}") 
 	  public String checkoutOrder(@PathVariable("id") Long userId) throws Exception {
 	        log.info("Inside OrderController:: checkoutOrder");
 	      
@@ -56,6 +103,7 @@ public class OrderController {
 					cart.setDelivery_address(deliveryAddress);
 					cart.setOrderStatus("Order Placed");
 					cart.setOrder_date(dt.toString());
+					cart.setProductName(addCart.getProductName());
 					tmp.add(cart);
 				}
 				 orderService.saveProductsForCheckout(tmp);
@@ -84,6 +132,13 @@ public class OrderController {
 		  
 	  }
 	  
+	  @GetMapping("/lastOrder/{id}")
+	  public OrderDetails getLastOrder(@PathVariable("id") Long userId) {
+		  log.info("Inside OrderController:: listOrderById");
+		 
+		  return  orderService.getLastOrder(userId);
+		  
+	  }
 	  public int getOrderId() {
 		    Random r = new Random( System.currentTimeMillis() );
 		    return 10000 + r.nextInt(20000);

@@ -15,6 +15,7 @@ public class OrderItem {
 	private String order_id,payment_type,delivery_address;
 	private Long userId;
 	private Long productId;
+	private String productName;
 	private int qty;
 	private Double price;
 	private String order_date;
@@ -81,8 +82,16 @@ public class OrderItem {
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
+	
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	
 	public OrderItem(int id, String order_id, String payment_type, String delivery_address, Long userId, Long productId,
-			int qty, Double price, String order_date, String orderStatus) {
+			String productName, int qty, Double price, String order_date, String orderStatus) {
 		super();
 		this.id = id;
 		this.order_id = order_id;
@@ -90,6 +99,7 @@ public class OrderItem {
 		this.delivery_address = delivery_address;
 		this.userId = userId;
 		this.productId = productId;
+		this.productName = productName;
 		this.qty = qty;
 		this.price = price;
 		this.order_date = order_date;

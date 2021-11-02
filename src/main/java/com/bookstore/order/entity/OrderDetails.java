@@ -15,11 +15,11 @@ public class OrderDetails {
 	private String order_id,payment_type,delivery_address;
 	private Long userId;
 	private String productId;
+	private String productName;
 	private int qty;
 	private Double price;
 	private String order_date;
 	private String orderStatus;
-	
 	public int getId() {
 		return id;
 	}
@@ -56,6 +56,12 @@ public class OrderDetails {
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 	public int getQty() {
 		return qty;
 	}
@@ -74,15 +80,14 @@ public class OrderDetails {
 	public void setOrder_date(String order_date) {
 		this.order_date = order_date;
 	}
-	
 	public String getOrderStatus() {
 		return orderStatus;
 	}
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
-	public OrderDetails(int id, String order_id, String payment_type, String delivery_address, Long userId, String productId,
-			int qty, Double price, String order_date, String orderStatus) {
+	public OrderDetails(int id, String order_id, String payment_type, String delivery_address, Long userId,
+			String productId, String productName, int qty, Double price, String order_date, String orderStatus) {
 		super();
 		this.id = id;
 		this.order_id = order_id;
@@ -90,6 +95,7 @@ public class OrderDetails {
 		this.delivery_address = delivery_address;
 		this.userId = userId;
 		this.productId = productId;
+		this.productName = productName;
 		this.qty = qty;
 		this.price = price;
 		this.order_date = order_date;
@@ -98,6 +104,7 @@ public class OrderDetails {
 	public OrderDetails() {
 		super();
 	}
+	
 	
 	
 	

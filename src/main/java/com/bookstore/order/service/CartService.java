@@ -26,7 +26,7 @@ public class CartService {
 	 * 
 	 * }
 	 */
-	public void addProductToCart(long productId, long userId, int qty, double price) throws Exception {
+	public void addProductToCart(long productId, long userId, int qty, double price,String productName) throws Exception {
 		try {
 			/*
 			 * if(cartRepository.getCartByProductIdAnduserId(userId,
@@ -39,6 +39,7 @@ public class CartService {
 			cartItem.setUserId(userId);
 			cartItem.setProductId(productId);
 			cartItem.setPrice(price);
+			cartItem.setProductName(productName);
 			//Products pro = proServices.getProductsById(productId);
 			//obj.setProduct(pro); 
 			//TODO price has to check with qty

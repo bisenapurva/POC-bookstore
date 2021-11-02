@@ -65,5 +65,13 @@ public class OrderService {
 	public List<OrderDetails> getOrders(Long userId) {
 		return orderDetailsRepository.getOrdersByuserId(userId);
 	}
+	/*public OrderDetails getOrderByOrderId(String orderId) {
+		// TODO Auto-generated method stub
+		return orderDetailsRepository.getOrderByOrderId(orderId);
+	}*/
+	public OrderDetails getLastOrder(Long userId) {
+		// TODO Auto-generated method stub
+		return orderDetailsRepository.getLastOrder(userId);
+	}
 	 
 }

@@ -16,6 +16,7 @@ public class CartItem {
 	private Double price;
 	private int qty;
 	private Long productId;
+	private String productName;
 	private Long userId;
 	
 	public int getId() {
@@ -48,12 +49,21 @@ public class CartItem {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public CartItem(int id, Double price, int qty, Long productId, Long userId) {
+	
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	
+	public CartItem(int id, Double price, int qty, Long productId, String productName, Long userId) {
 		super();
 		this.id = id;
 		this.price = price;
 		this.qty = qty;
 		this.productId = productId;
+		this.productName = productName;
 		this.userId = userId;
 	}
 	public CartItem() {

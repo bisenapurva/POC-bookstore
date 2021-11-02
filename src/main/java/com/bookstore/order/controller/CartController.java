@@ -33,8 +33,8 @@ public class CartController {
 		Long userId=carBean.getUserId();
 		int qty =carBean.getQty();
 		Double price= carBean.getPrice();
-		
-		cartSevice.addProductToCart(productId,userId,qty,price);
+		String productName=carBean.getProductName();
+		cartSevice.addProductToCart(productId,userId,qty,price,productName);
 		
 		return "Product added to cart successfully";
 		
