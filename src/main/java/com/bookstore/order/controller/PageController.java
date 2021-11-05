@@ -15,6 +15,11 @@ public class PageController {
 	/*
 	 * @RequestMapping({"/","/index"}) public String home() { return"index"; }
 	 */
+@GetMapping("/")
+	public String getHome() {
+		return "poc deployed on azure";
+		
+	}
 	@RequestMapping("cart")
 	public ModelAndView navigateToCartPage() {
 		ModelAndView modelAndView=new ModelAndView();
